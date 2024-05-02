@@ -10,7 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -74,31 +77,40 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'aa': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-        'defasdasult': {
+    'rh': {
         'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'OLM_RH',
-        'USER': 'sa',
-        'PASSWORD': 'temporal123',
-        'HOST': '127.0.0.1',
-        'PORT': '',
-
+        'NAME': os.environ.get('RH_DB_NAME'),
+        'USER': os.environ.get('RH_DB_USER'),
+        'PASSWORD': os.environ.get('RH_DB_PASSWORD'),
+        'HOST': os.environ.get('RH_DB_HOST'),
+        'PORT': os.environ.get('RH_DB_PORT'),
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',
         },
-
+    },
+    'int': {
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': os.environ.get('DB_NAME_INT'),
+        'USER': os.environ.get('DB_USER_RH'),
+        'PASSWORD': os.environ.get('DB_PWD_RH'),
+        'HOST': os.environ.get('DB_HOST_RH'),
+        'PORT': os.environ.get('DB_PORT_RH'),
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+        },
     },
 
-    'default': {
+    'sigenu': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sigenu_student',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',  # El puerto predeterminado de PostgreSQL es 5432
+        'NAME': os.getenv('SIGENU_DB_NAME'),
+        'USER': os.getenv('SIGENU_DB_USER'),
+        'PASSWORD': os.getenv('SIGENU_DB_PASSWORD'),
+        'HOST': os.getenv('SIGENU_DB_HOST'),
+        'PORT': os.getenv('SIGENU_DB_PORT'),
     }
 }
 
