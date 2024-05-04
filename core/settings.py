@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'sigenu',
 ]
 
 MIDDLEWARE = [
@@ -77,34 +79,34 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default1': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'rh': {
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': os.environ.get('RH_DB_NAME'),
-        'USER': os.environ.get('RH_DB_USER'),
-        'PASSWORD': os.environ.get('RH_DB_PASSWORD'),
-        'HOST': os.environ.get('RH_DB_HOST'),
-        'PORT': os.environ.get('RH_DB_PORT'),
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-        },
-    },
-    'int': {
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': os.environ.get('DB_NAME_INT'),
-        'USER': os.environ.get('DB_USER_RH'),
-        'PASSWORD': os.environ.get('DB_PWD_RH'),
-        'HOST': os.environ.get('DB_HOST_RH'),
-        'PORT': os.environ.get('DB_PORT_RH'),
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-        },
-    },
+    # 'rh': {
+    #     'ENGINE': 'sql_server.pyodbc',
+    #     'NAME': os.environ.get('RH_DB_NAME'),
+    #     'USER': os.environ.get('RH_DB_USER'),
+    #     'PASSWORD': os.environ.get('RH_DB_PASSWORD'),
+    #     'HOST': os.environ.get('RH_DB_HOST'),
+    #     'PORT': os.environ.get('RH_DB_PORT'),
+    #     'OPTIONS': {
+    #         'driver': 'ODBC Driver 17 for SQL Server',
+    #     },
+    # },
+    # 'int': {
+    #     'ENGINE': 'sql_server.pyodbc',
+    #     'NAME': os.environ.get('DB_NAME_INT'),
+    #     'USER': os.environ.get('DB_USER_RH'),
+    #     'PASSWORD': os.environ.get('DB_PWD_RH'),
+    #     'HOST': os.environ.get('DB_HOST_RH'),
+    #     'PORT': os.environ.get('DB_PORT_RH'),
+    #     'OPTIONS': {
+    #         'driver': 'ODBC Driver 17 for SQL Server',
+    #     },
+    # },
 
-    'sigenu': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.getenv('SIGENU_DB_NAME'),
         'USER': os.getenv('SIGENU_DB_USER'),
